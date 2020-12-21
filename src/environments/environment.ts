@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  loginURL: 'https://us-central1-code-challenge-e9f47.cloudfunctions.net/app/token',
+  //searchURL: 'http://itunes-search-api-demo.sourceforge.net/mockserver'
+  searchURL: 'http://localhost:8000'
 };
 
 /*

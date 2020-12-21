@@ -1,0 +1,91 @@
+#results-table{
+    width: 90vw;
+    margin-left: 5vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: solid 1px #DDD;
+    }
+
+.table-header  {
+    color: #e5e6e7;
+    background: #456;
+    padding: 4px 0 4px 5px;
+}
+
+.first-col, .second-col, .third-col {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.first-col  {
+    width : 20%;
+}
+
+.second-col {
+    width: 20%;
+}
+
+.third-col {
+    width: 60%;
+}
+
+.table-row {
+    color: #666;
+    background : #EEE;
+    padding: 3px 0 3px 5px;
+    border-top: solid 1px #BBB;
+}
+
+.search-button{
+    vertical-align: middle;
+    cursor: pointer;
+    border: solid 1px #89A;
+    background: #9AB;
+    color: #444;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin: 0 6px;
+    user-select : none;
+}
+
+.search-button:hover{
+    background: #BCD;
+    transition: 0.5s;
+}
+
+.results-legend{
+    display: inline-block;
+}
+
+#results-description{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#filter-box{
+    font-family : Arial, Helvetica, sans-serif;
+    color : #444;
+    border: solid 1px #DDD;
+    background : #EEE;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.form-field{
+    margin-bottom: 5px;
+}
+
+.alt-search{
+    cursor: pointer;
+}
+
+.alt-search:hover{
+    color: #000;
+    transition: 0.5s;
+}

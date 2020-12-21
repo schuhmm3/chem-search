@@ -1,0 +1,57 @@
+<div id="filter-box">
+    Search term :
+    <input id="search-box" class="form-field" type="text" [(ngModel)]='query'>
+
+    <form>
+        <input id="db1" type="radio" id="db1" name="database" value="db1" [checked]="isChecked(1)"
+            (click)="selectDb(1)">
+        <label for="db1">Database 1</label><br>
+        <input type="radio" id="db2" name="database" value="db2" [checked]="isChecked(2)" (click)="selectDb(2)">
+        <label for="db2">Database 2</label><br>
+    </form>
+</div>
+
+
+<div id="results-description">
+    <div class="search-button" *ngIf="offset > 0" (click)="showPrev()">
+        &lt;&lt; Prev. page
+    </div>
+    <div class="results-legend" *ngIf="found">
+        {{found}} results found.
+        Showing results from {{offset+1}} to {{offset+limit}}
+    </div>
+    <div class="search-button" *ngIf="(offset+limit) < found" (click)="showNext()">
+        Next page &gt;&gt;
+    </div>
+</div>
+
+<div id="results-table" *ngIf="found > 0">
+    <div class="table-header">
+        <div class="first-col">
+            Patent No.
+        </div>
+        <div class="second-col">
+            Chemical Type
+        </div>
+        <div class="third-col">
+            Patent Title
+        </div>
+    </div>
+    <div class="table-row" *ngFor="let row of values">
+        <div class="first-col">
+            <span class="alt-search" (click)="altSearch(row['patent no'])" title="Search in the other database">
+                {{row['patent no']}}
+            </span>
+        </div>
+        <div class="second-col">
+            <span class="alt-search" (click)="altSearch(row['chemical type 1'])" title="Search in the other database">
+                {{row['chemical type 1']}}
+            </span>
+        </div>
+        <div class="third-col">
+            <span class="alt-search" (click)="altSearch(row['patent title'])" title="Search in the other database">
+            {{row['patent title']}}
+            </span>
+        </div>
+    </div>
+</div>

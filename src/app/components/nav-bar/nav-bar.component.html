@@ -1,0 +1,9 @@
+<nav class="nav-bar">
+    <span class="buttons">
+      <span class="profile" *ngIf="uName"> Logged in as <strong>{{uName}}</strong>
+        <br/>
+        <small><a (click)="logOut()">Log out</a></small>
+      </span>
+      <span class="profile" *ngIf="!uName">Logged out</span>
+    </span>
+  </nav>
