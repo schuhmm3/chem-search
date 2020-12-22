@@ -5,5 +5,12 @@ export interface ValResponse {
     limit: number
 }
 
+export interface ChemicalsResponse {
+    chemical: string,
+    count: number,
+    results: Array<String>,
+    results2: Array<String>
+}
+
 
 

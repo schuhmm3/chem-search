@@ -1,12 +1,57 @@
-#results-table{
-    width: 90vw;
-    margin-left: 5vw;
+.close {
+    color: #888;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.chem-box{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #444;
+    border: solid 1px #DDD;
+    background: #EEE;
+    padding: 10px;
+    text-align: left;
+    margin-bottom: 5px;
+    box-shadow: -3px 3px 6px 1px rgba(46,46,46,0.3);
+}
+.chem-box .element{
+    border: solid 1px #AAA;
+    margin: 1px 1px 1px 4px;
+    padding: 1px 2px;
+    cursor: pointer;
+    background: #CCF;
+    display: inline-block;
+    border-radius: 1px;
+}
+
+.chem-box .element:hover{
+    background: #FFF;
+    transition: 0.5s;
+}
+
+.twin-results{
+    width:49%; 
+    display:inline-block; 
+    vertical-align: top;
+}
+
+.results-table{
+    width: 95%;
+    margin-left: 3%;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
     font-size: 14px;
     border-radius: 5px;
     margin-top: 10px;
     border: solid 1px #DDD;
+    box-shadow: -3px 3px 6px 1px rgba(46,46,46,0.3);
     }
 
 .table-header  {
@@ -15,21 +60,29 @@
     padding: 4px 0 4px 5px;
 }
 
-.first-col, .second-col, .third-col {
+.col-3, .col-6, .col-9 {
     vertical-align: top;
     display: inline-block;
 }
 
-.first-col  {
-    width : 20%;
+.col-3{
+    width: 25%;
 }
 
-.second-col {
-    width: 20%;
+.col-6{
+    width: 50%
 }
 
-.third-col {
-    width: 60%;
+.col-9{
+    width: 75%
+}
+
+.sortable {
+    cursor: pointer;
+}
+
+.sortable:hover{
+    color: rgb(253, 246, 203);
 }
 
 .table-row {
@@ -37,6 +90,17 @@
     background : #EEE;
     padding: 3px 0 3px 5px;
     border-top: solid 1px #BBB;
+    font-size:12px;
+}
+
+.table-row-search {
+    cursor:pointer;
+}
+
+.table-row-search:hover{
+    color: #000;
+    transition: 0.5s;
+    background:#DDF;
 }
 
 .search-button{
@@ -61,7 +125,7 @@
     display: inline-block;
 }
 
-#results-description{
+.results-description{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     margin-top: 10px;
@@ -75,17 +139,11 @@
     padding: 10px;
     text-align: center;
     margin-bottom: 5px;
+    box-shadow: -3px 3px 6px 1px rgba(46,46,46,0.3);
 }
 
 .form-field{
     margin-bottom: 5px;
 }
 
-.alt-search{
-    cursor: pointer;
-}
 
-.alt-search:hover{
-    color: #000;
-    transition: 0.5s;
-}

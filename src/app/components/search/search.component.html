@@ -1,57 +1,179 @@
+<div class="chem-box" *ngIf="chems">
+    <span class="close" (click)="patentBoxClose()">&times;</span>
+    <b>{{chems.count+ chems.count2}}</b> Documents found with {{chems.chemical}}
+    <div>
+        <b><u>Table 1 ({{chems.count}}):</u></b>
+        <span *ngFor="let pat of chems.results" class="element" (click)="openExtWindow(pat)"
+            title="Search in google patents"> {{pat}}</span>
+    </div>
+
+    <div>
+        <b><u>Table 2 ({{chems.count2}}):</u></b>
+        <span *ngFor="let pat of chems.results2" class="element" (click)="openExtWindow(pat)"
+            title="Search in Google Patents"> {{pat}}</span>
+    </div>
+
+    <h4></h4>
+
+    <div>
+        <div class="twin-results">
+            <div class="results-description">
+                <div class="results-legend" *ngIf="found">
+                    <b>{{chemTable1.length}}</b> Chemicals found in Table 1 patents
+                </div>
+            </div>
+            <div class="results-table">
+                <div class="table-header">
+                    <div class="col-9 sortable" (click)="sortTable(1,'chem')" title="Sort by Chemical.">
+                        Chemical
+                        <span *ngIf="sortCT1.chem === 2">&#x25B2;</span>
+                        <span *ngIf="sortCT1.chem === 1">&#x25BC;</span>
+                    </div>
+                    <div class="col-3 sortable" (click)="sortTable(1,'count')" title="Sort by number of patents.">
+                        N. of patents
+                        <span *ngIf="sortCT1.num === 2">&#x25B2;</span>
+                        <span *ngIf="sortCT1.num === 1">&#x25BC;</span>
+                    </div>
+                </div>
+                <ng-container *ngFor="let element of chemTable1">
+                    <div class="table-row table-row-search" title="Search {{element.type}}" (click)="searchChem(element.type)">
+                        <div class="col-9">
+                            {{element.type}}
+                        </div>
+                        <div class="col-3">
+                            {{element.count}}
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+
+        <div class="twin-results">
+            <div class="results-description">
+                <div class="results-legend" *ngIf="found">
+                    <b>{{chemTable2.length}}</b> Chemicals found in Table 2 patents
+                </div>
+            </div>
+            <div class="results-table">
+                <div class="table-header">
+                    <div class="col-9 sortable" (click)="sortTable(2,'chem')" title="Sort by Chemical.">
+                        Chemical
+                        <span *ngIf="sortCT2.chem === 2">&#x25B2;</span>
+                        <span *ngIf="sortCT2.chem === 1">&#x25BC;</span>
+                    </div>
+                    <div class="col-3 sortable" (click)="sortTable(2,'count')" title="Sort by number of patents.">
+                        N. of patents
+                        <span *ngIf="sortCT2.num === 2">&#x25B2;</span>
+                        <span *ngIf="sortCT2.num === 1">&#x25BC;</span>
+                    </div>
+                </div>
+                <ng-container *ngFor="let element of chemTable2">
+                    <div class="table-row table-row-search" title="Search {{element.type}}" (click)="searchChem(element.type)">
+                        <div class="col-9">
+                            {{element.type}}
+                        </div>
+                        <div class="col-3">
+                            {{element.count}}
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 <div id="filter-box">
     Search term :
     <input id="search-box" class="form-field" type="text" [(ngModel)]='query'>
-
-    <form>
-        <input id="db1" type="radio" id="db1" name="database" value="db1" [checked]="isChecked(1)"
-            (click)="selectDb(1)">
-        <label for="db1">Database 1</label><br>
-        <input type="radio" id="db2" name="database" value="db2" [checked]="isChecked(2)" (click)="selectDb(2)">
-        <label for="db2">Database 2</label><br>
-    </form>
 </div>
 
+<div>
+    <div class="twin-results">
+        <div class="results-description">
+            <div class="search-button" *ngIf="offset > 0" (click)="showPrev(1)">
+                &lt;&lt; Prev. page
+            </div>
+            <div class="results-legend" *ngIf="found">
+                <b>{{found}}</b> results found.
+                Showing page {{(offset / limit)+1 | number :'1.0-0'}}/{{ (found / limit)+1 | number: '1.0-0'}}
+            </div>
+            <div class="search-button" *ngIf="(offset+limit) < found" (click)="showNext(1)">
+                Next page &gt;&gt;
+            </div>
+        </div>
 
-<div id="results-description">
-    <div class="search-button" *ngIf="offset > 0" (click)="showPrev()">
-        &lt;&lt; Prev. page
+        <div class="results-table" *ngIf="found > 0">
+            <div class="table-header">
+                <div class="col-3">
+                    Patent No.
+                </div>
+                <div class="col-3">
+                    Chemical Type
+                </div>
+                <div class="col-6">
+                    Patent Title
+                </div>
+            </div>
+            <ng-container *ngFor="let row of values">
+                <div class="table-row table-row-search" title="Search patents for {{row['chemical type 1']}}."
+                    (click)="searchChem(row['chemical type 1'])">
+                    <div class="col-3">
+                        {{row['patent no']}}
+                    </div>
+                    <div class="col-3">
+                        {{row['chemical type 1']}}
+                    </div>
+                    <div class="col-6">
+                        {{row['patent title']}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
     </div>
-    <div class="results-legend" *ngIf="found">
-        {{found}} results found.
-        Showing results from {{offset+1}} to {{offset+limit}}
+    <div class="twin-results">
+        <div class="results-description">
+            <div class="search-button" *ngIf="offset2 > 0" (click)="showPrev(2)">
+                &lt;&lt; Prev. page
+            </div>
+            <div class="results-legend" *ngIf="found">
+                <b>{{found2}}</b> results found.
+                Showing page {{(offset2/ limit2)+1 | number :'1.0-0'}} /{{(found2 / limit2)+1 | number: '1.0-0'}}
+            </div>
+            <div class="search-button" *ngIf="(offset2+limit2) < found2" (click)="showNext(2)">
+                Next page &gt;&gt;
+            </div>
+        </div>
+        <div class="results-table" *ngIf="found > 0">
+            <div class="table-header">
+                <div class="col-3">
+                    Patent No.
+                </div>
+                <div class="col-3">
+                    Chemical Type
+                </div>
+                <div class="col-6">
+                    Patent Title
+                </div>
+            </div>
+            <ng-container *ngFor="let row of values2">
+                <div class="table-row table-row-search" title="Search patents for {{row['chemical type 1']}}."
+                    (click)="searchChem(row['chemical type 1'])">
+                    <div class="col-3">
+                        {{row['patent no']}}
+                    </div>
+                    <div class="col-3">
+                        {{row['chemical type 1']}}
+                    </div>
+                    <div class="col-6">
+                        {{row['patent title']}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
     </div>
-    <div class="search-button" *ngIf="(offset+limit) < found" (click)="showNext()">
-        Next page &gt;&gt;
-    </div>
-</div>
 
-<div id="results-table" *ngIf="found > 0">
-    <div class="table-header">
-        <div class="first-col">
-            Patent No.
-        </div>
-        <div class="second-col">
-            Chemical Type
-        </div>
-        <div class="third-col">
-            Patent Title
-        </div>
-    </div>
-    <div class="table-row" *ngFor="let row of values">
-        <div class="first-col">
-            <span class="alt-search" (click)="altSearch(row['patent no'])" title="Search in the other database">
-                {{row['patent no']}}
-            </span>
-        </div>
-        <div class="second-col">
-            <span class="alt-search" (click)="altSearch(row['chemical type 1'])" title="Search in the other database">
-                {{row['chemical type 1']}}
-            </span>
-        </div>
-        <div class="third-col">
-            <span class="alt-search" (click)="altSearch(row['patent title'])" title="Search in the other database">
-            {{row['patent title']}}
-            </span>
-        </div>
-    </div>
 </div>

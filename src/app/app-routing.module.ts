@@ -11,7 +11,7 @@ import { IsLoggedGuard } from './guards/is-logged.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'search', component: SearchComponent , canActivate: [IsLoggedGuard] }, //  Deactivate Guard for testing :-) 
+  { path: 'search', component: SearchComponent, canActivate: [IsLoggedGuard]  }, //  Deactivate Guard for testing :-) 
   { path: 'not-allowed', component: NotAllowedComponent},
   { path: '**', component: NotFoundComponent }
 ];

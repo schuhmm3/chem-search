@@ -6,6 +6,7 @@
     border: solid 1px #ddd;
     margin-bottom: 5px;
     min-height: 32px;
+    box-shadow: -3px 3px 6px 1px rgba(46,46,46,0.3);
 }
 
 .buttons {
@@ -24,4 +25,5 @@ a:hover{
     font-size: 16px;
     text-align: center;
     display:inline-block;
+    padding-right: 4px;
 }
